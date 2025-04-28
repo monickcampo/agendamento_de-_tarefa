@@ -1,14 +1,20 @@
 import { View, Text,StyleSheet, Touchable, TouchableOpacity} from 'react-native';
 import TarefaItem from '../components/TarefaItem';
+import { useNavigation } from '@react-navigation/native';
+import { ScrollView } from 'react-native-web';
 
 export default function Home(){
+    
+    const navigation = useNavigation();
+
     return (
         <View style={styles.container}>
             <View style={styles.cabecalho}>
               <Text style={styles.titulo}>ABRIL / 2025</Text>  
               <View style={styles.icone}></View>
             </View>
-            <View style={styles.boby}>
+            <ScrollView style={styles.boby}>
+                </ScrollView>
               <TarefaItem 
                  nome="Tarefas 1"
                  status="a cumprir"
@@ -26,13 +32,13 @@ export default function Home(){
             <TouchableOpacity
                 style={styles.botaoAdicionar}
                 onPress={()=>{
-                    alert("wedwe")
+                   navigation.navigate("NovaTarefa")
                 }}
             >
                     <Text style={styles.textoBotaoAdicionar}>+</Text>
                 </TouchableOpacity>
             </View>
-        </View>
+       
     );
 }
 
