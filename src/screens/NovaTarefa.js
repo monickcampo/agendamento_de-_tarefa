@@ -1,34 +1,104 @@
-import { View,Text, StyleSheet}from "react-native";
+import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
+import { useNavigation } from '@react-navigation/native';
+import { Touchable } from 'react-native';
 
-
-export default function NovaTarefa(){
-    return(
+export default function NovaTarefa() {
+    return (
         <View>
             <View style={styles.cabecalho}>
-            <Text style={styles.titulo}>Adicionar Tarefa</Text>
+                <Text style={styles.titulo}>Adicionar Tarefa</Text>
+            </View>
+            <View style={styles.body}>
+                <Text style={styles.texto}>Nome da Tarefa:</Text>
+                <TextInput style={styles.textInput} />
 
+                <Text style={styles.texto}>Categotia da Tarefa:</Text>
+                <Picker style={styles.textInput}>
+                    <Picker.Item label="Estudo" value="estudo" />
+                    <Picker.Item label="Trabalho" value="trabalho" />
+                    <Picker.Item label="Reunião" value="reuniao" />
+                    <Picker.Item label="Prova" value="prova" />
+                    <Picker.Item label="Aula" value="aula" />
+                </Picker>
+
+                <Text style={styles.texto}>Descrição da Tarefa:</Text>
+                <TextInput
+                    style={styles.textInput}
+                    placeholder='Value'
+                    multiline
+                    numberOfLines={3}
+                />
+
+                <TextInput 
+                    style={styles.textDate}
+                    placeholder='dd/mm/yyyy'
+                />
+                <View style={styles.containerBotao}>
+                    <TouchableOpacity style={styles.botao} onPress={()=> navigation.goBack()}>
+                    <Text style={styles.botaoTexto} >Cancel</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.botao}>
+                    <Text style={styles.botaoTexto} >Ok</Text>
+                    </TouchableOpacity>
+                 </View>
             </View>
         </View>
     )
 }
 
+
 const styles = StyleSheet.create({
-    container:{
+    container: {
         flex: 1
     },
     cabecalho: {
         backgroundColor: 'blue',
-        width:'100%',
+        width: '100%',
         height: 60,
-        flexDirection:'row',
-        justifyContent: 'center',
+        flexDirection: 'row',
+        justifyContent: "center",
         alignItems: 'center'
     },
-    titulo:{
+    titulo: {
+        color: 'white',
+        fontSize: 18,
         fontWeight: 'bold',
-        fontSize:18,
-        fontWeight: 'bold',
-        textAlign:'center'
+        textAlign: 'center'
     },
+    body: {
+        padding: 15
+    },
+    texto: {
+        marginBottom: 5
+    },
+    textInput: {
+        borderWidth: 1,
+        borderRadius: 10,
+        borderColor: '#ccc',
+        padding: 10,
+        backgroundColor: 'white',
+        marginBottom: 15
+    },
+    textDate: {
+        height: 60,
+        borderWidth: 3,
+        borderColor: 'indigo',
+        borderRadius: 5,
+        margin: 40,
+        marginVertical: 30,
+        padding: 15,
+        backgroundColor: 'white'
+    },
+    containerBotao: {
+        flexDirection: 'row',
+        justifyContent:'end'
+    },
+    botao: {
+        padding: 15
+    },
+    botaoTexto: {
+        color:'indigo'
 
+    }
 })
