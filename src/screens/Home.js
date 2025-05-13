@@ -1,7 +1,20 @@
 import { View, Text,StyleSheet, Touchable, TouchableOpacity} from 'react-native';
 import TarefaItem from '../components/TarefaItem';
+import { getData } from '../storage/async-storage';
+import { useEffect, useState } from 'react';
 
 export default function Home(){
+     
+    const [tasks, setTasks] = useState (null)
+
+    //executa ao carregar a página
+    useEffect( async () =>{
+       const data = await getData();
+       setTasks(data);
+    }, []);
+
+    console.log(tasks)
+
     return (
         <View style={styles.container}>
             <View style={styles.cabecalho}>
