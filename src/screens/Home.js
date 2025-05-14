@@ -3,7 +3,7 @@ import TarefaItem from '../components/TarefaItem';
 import { getData } from '../storage/async-storage';
 import { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { ScrollView } from 'react-native-web';
+
 
 export default function Home() {
 
