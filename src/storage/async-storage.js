@@ -1,17 +1,25 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const Key = 'tasks';
+const key = 'tasks';
 
-const getData = async () =>{
-   return await AsyncStorage.getItem(Key);
+const getData = async () => {
+    // JSON.parse transforma textos em objetos
+    let data = JSON.parse(await AsyncStorage.getItem(key));
+
+    // Se não houverem dados, preencher e salvar um array vazio
+    if (data == null) {
+        data = []
+        setData(data)
+    }
+    return data
 }
 
-const setData = async ( value) =>{
-    await AsyncStorage.getItem(Key, JSON.stringify(value));
-
+const setData = async (value) => {
+    // JSON.stringify transforma objetos em textos
+    await AsyncStorage.setItem(key, JSON.stringify(value));
 }
 
-export{
+export {
     getData,
     setData
 }
