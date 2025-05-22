@@ -14,7 +14,7 @@ export default function NovaTarefa() {
     const [descricao, setDescricao] = useState('')
     const [data,setData] = useState('')
 
-    const handleSave = () =>{
+    const handleSave = async () =>{
         const tarefa = {
             nome: nome,
             categoria: categotia,
@@ -22,10 +22,26 @@ export default function NovaTarefa() {
             descricao: descricao,
 
         };
-        addData(tarefa)
+
+        if (nome == ''){
+            alert("Campo nome não preenchido")
+        }
+        else if (descricao == ''){
+            alert("Campo descrição não preenchido")
+        }
+
+        else if (data == ''){
+            alert("Campo data não preenchido")
+        }
+
+        else{
+         await addData(tarefa)
         alert("Nova tarefa cadastrada!")
         navigation.navigate('Home')
+        }
     }
+
+
     return (
         <View>
             <View style={styles.cabecalho}>
