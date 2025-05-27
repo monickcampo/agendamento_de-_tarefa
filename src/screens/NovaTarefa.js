@@ -1,9 +1,10 @@
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
 import { addData } from '../storage/async-storage';
 import MaskInput from 'react-native-mask-input';
+
 
 
 export default function NovaTarefa() {
@@ -45,11 +46,11 @@ export default function NovaTarefa() {
 
 
     return (
-        <View>
+        <View style={styles.container}>
             <View style={styles.cabecalho}>
                 <Text style={styles.titulo}>Adicionar Tarefa</Text>
             </View>
-            <View style={styles.body}>
+            <ScrollView style={styles.body}>
                 <Text style={styles.texto}>Nome da Tarefa:</Text>
                 <TextInput style={styles.textInput} value={nome} onChangeText={texto => setNome(texto)} />
 
@@ -87,7 +88,7 @@ export default function NovaTarefa() {
                     <Text style={styles.botaoTexto} >Ok</Text>
                     </TouchableOpacity>
                  </View>
-            </View>
+            </ScrollView>
         </View>
     )
 }
