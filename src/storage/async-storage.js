@@ -45,9 +45,26 @@ for (let _task of tasks){
     }
  await setData(tasks)
 }
+
+const updateData = async (task) =>{
+    const tasks = await getData ();
+
+for (let _task of tasks){
+
+    if (_task.id == task.id){
+       const index = tasks.indexOf(_task)
+       if (index !== -1){
+           tasks.splice(index, 1);
+           }
+       break
+        }
+    }
+ await setData(tasks)
+}
 export {
     getData,
     setData,
     addData,
-    removeData
+    removeData,
+    updateData
 }

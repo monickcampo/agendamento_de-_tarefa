@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     botaoMais: {
-        fontSize: 40,
+        fontSize: 70,
         color: 'white',
         fontWeight: 'bold',
     }

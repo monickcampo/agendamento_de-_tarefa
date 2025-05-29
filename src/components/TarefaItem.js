@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { removeData } from '../storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
 
 export default function TarefaItem(props) {
     let statusColor = 'orange';
@@ -13,9 +14,17 @@ export default function TarefaItem(props) {
       await removeData(props.task)
       props.setIsLoaded(true)
     }
+    
+    const navigation = useNavigation()
 
     return (
-        <View style={styles.container}>
+        <TouchableOpacity 
+            style={styles.container}
+            onPress={() =>{
+                navigation.navigate('NovaTarefa', props.task)
+            }}
+        
+        >
            <Text style={styles.titulo}>{props.task.nome}</Text>
            <Text style={styles.data}>{props.task.data}</Text>
            <Text style={styles.categoria}>Categoria - {props.task.categoria}</Text>
@@ -25,7 +34,7 @@ export default function TarefaItem(props) {
            <TouchableOpacity style={styles.botaoExcluir} onPress={() => handleDelete()}>
            <MaterialCommunityIcons name="delete-empty" size={32} color="dark" />
            </TouchableOpacity>
-        </View>
+        </TouchableOpacity>
     );
 }
 
